@@ -45,7 +45,7 @@ Lastly add it in your maven dependency
  TableBasedReader tableBasedReader = new TableBasedReader(new File("path"));
  tableBasedReader.readExcelConverter();
  ```
- Same as ExcelBasedReader, the different is TableBasedReader prepare the data for TableTransformer.
+ Same as ExcelBasedReader, the difference is TableBasedReader prepare the data for TableTransformer.
  
  ### ExcelTransformer
  
