@@ -18,10 +18,6 @@
         rdfs:label  "NumericValue" ;
         :CellValue  "0.8"^^xsd:float .
 
-[ a            owl:AllDisjointClasses ;
-  owl:members  ( :BasicElement :Chart :Comments :Illustration :Table :Text )
-] .
-
 :FunctionName  a     owl:DatatypeProperty ;
         rdfs:domain  :FormulaValue , :Constraint ;
         rdfs:range   xsd:string .
@@ -381,13 +377,6 @@
         :hasValue           "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"" ;
         :isPartOfWorksheet  :Worksheet_Sheet1 .
 
-:cell_WorksheetSheet2_D2_value
-        a              :FormulaValue ;
-        rdfs:label     "FormulaValue" ;
-        :CellValue     "50.0"^^xsd:float ;
-        :FunctionName  "Sheet1!B2 * 10" ;
-        :hasCell       :cell_WorksheetSheet1_B2 .
-
 :CellStatus  a      owl:DatatypeProperty ;
         rdfs:range  [ a          rdfs:Datatype ;
                       owl:oneOf  [ a          rdf:List ;
@@ -401,6 +390,13 @@
                                               ]
                                  ]
                     ] .
+
+:cell_WorksheetSheet2_D2_value
+        a              :FormulaValue ;
+        rdfs:label     "FormulaValue" ;
+        :CellValue     "50.0"^^xsd:float ;
+        :FunctionName  "Sheet1!B2 * 10" ;
+        :hasCell       :cell_WorksheetSheet1_B2 .
 
 :cell_WorksheetSheet1_D7_value
         a              :FormulaValue ;
@@ -556,10 +552,6 @@
         rdfs:range          xsd:string ;
         rdfs:subPropertyOf  owl:topDataProperty .
 
-[ a            owl:AllDisjointClasses ;
-  owl:members  ( :BooleanValue :ErrorValue :FormulaValue :SparklineValue :StringValue )
-] .
-
 :cell_WorksheetSheet2_G1
         a                   :cell ;
         rdfs:label          "Cell_G1" ;
@@ -664,6 +656,10 @@
         :hasCell            :cell_WorksheetSheet1_J1 , :cell_WorksheetSheet1_K6 , :cell_WorksheetSheet1_L1 , :cell_WorksheetSheet1_L5 , :cell_WorksheetSheet1_J7 , :cell_WorksheetSheet1_L4 , :cell_WorksheetSheet1_M6 , :cell_WorksheetSheet1_J8 , :cell_WorksheetSheet1_I5 , :cell_WorksheetSheet1_K2 , :cell_WorksheetSheet1_J4 , :cell_WorksheetSheet1_I6 , :cell_WorksheetSheet1_I2 , :cell_WorksheetSheet1_M5 , :cell_WorksheetSheet1_K8 , :cell_WorksheetSheet1_L3 , :cell_WorksheetSheet1_L7 , :cell_WorksheetSheet1_M2 , :cell_WorksheetSheet1_I1 , :cell_WorksheetSheet1_K5 , :cell_WorksheetSheet1_M8 , :cell_WorksheetSheet1_J6 , :cell_WorksheetSheet1_K1 , :cell_WorksheetSheet1_I8 , :cell_WorksheetSheet1_I4 , :cell_WorksheetSheet1_J3 , :cell_WorksheetSheet1_M4 , :cell_WorksheetSheet1_J2 , :cell_WorksheetSheet1_K7 , :cell_WorksheetSheet1_L2 , :cell_WorksheetSheet1_L6 , :cell_WorksheetSheet1_M1 , :cell_WorksheetSheet1_K4 , :cell_WorksheetSheet1_M7 , :cell_WorksheetSheet1_K3 , :cell_WorksheetSheet1_J5 , :cell_WorksheetSheet1_I7 , :cell_WorksheetSheet1_I3 , :cell_WorksheetSheet1_L8 , :cell_WorksheetSheet1_M3 ;
         :isPartOfWorksheet  :Worksheet_Sheet1 .
 
+[ a            owl:AllDisjointClasses ;
+  owl:members  ( :BooleanValue :ErrorValue :FormulaValue :SparklineValue :StringValue )
+] .
+
 :cell_WorksheetSheet1_E2
         a                   :cell ;
         rdfs:label          "Cell_E2" ;
@@ -678,6 +674,10 @@
         rdfs:range   [ a            rdfs:Datatype ;
                        owl:unionOf  ( xsd:boolean xsd:integer xsd:string )
                      ] .
+
+[ a            owl:AllDisjointClasses ;
+  owl:members  ( :BasicElement :Chart :Comments :Illustration :Table :Text )
+] .
 
 :cell_WorksheetSheet2_B2_value
         a              :FormulaValue ;
@@ -789,6 +789,13 @@
         :hasValue           :cell_WorksheetSheet2_C5_value ;
         :isPartOfWorksheet  :Worksheet_Sheet2 .
 
+:cell_WorksheetSheet2_A4_value
+        a              :FormulaValue ;
+        rdfs:label     "FormulaValue" ;
+        :CellValue     "Chocolate" ;
+        :FunctionName  "Sheet1!A4" ;
+        :hasCell       :cell_WorksheetSheet1_A4 .
+
 :Extension  a       owl:DatatypeProperty ;
         rdfs:range  [ a          rdfs:Datatype ;
                       owl:oneOf  [ a          rdf:List ;
@@ -840,13 +847,6 @@
         :isPartOfWorksheet  :Worksheet_Sheet1 ;
         :isUsedIn           :cell_WorksheetSheet2_M2_value , :cell_WorksheetSheet1_E2_value , :cell_WorksheetSheet1_D4_value , :cell_WorksheetSheet1_E3_value , :cell_WorksheetSheet1_F4_value , :cell_WorksheetSheet1_F2_value .
 
-:cell_WorksheetSheet2_A4_value
-        a              :FormulaValue ;
-        rdfs:label     "FormulaValue" ;
-        :CellValue     "Chocolate" ;
-        :FunctionName  "Sheet1!A4" ;
-        :hasCell       :cell_WorksheetSheet1_A4 .
-
 :cell_WorksheetSheet1_M6
         a           :cell ;
         rdfs:label  "Cell_M6" ;
@@ -894,16 +894,6 @@
         :hasColumn          :column_WorksheetSheet2_D , :column_WorksheetSheet2_F , :column_WorksheetSheet2_A , :column_WorksheetSheet2_B , :column_WorksheetSheet2_C ;
         :isPartOfWorksheet  :Worksheet_Sheet2 .
 
-:cell_WorksheetSheet1_D6
-        a                   :cell ;
-        rdfs:label          "Cell_D6" ;
-        :CellID             "D6" ;
-        :hasColumn          :column_WorksheetSheet1_D ;
-        :hasRow             :row_WorksheetSheet1_6 ;
-        :hasValue           :cell_WorksheetSheet1_D6_value ;
-        :isPartOfWorksheet  :Worksheet_Sheet1 ;
-        :isUsedIn           :cell_WorksheetSheet1_E3_value .
-
 :cell_WorksheetSheet2_D7
         a                   :cell ;
         rdfs:label          "Cell_D7" ;
@@ -913,6 +903,16 @@
         :hasValue           :cell_WorksheetSheet2_D7_value ;
         :isPartOfWorksheet  :Worksheet_Sheet2 ;
         :isUsedIn           :cell_WorksheetSheet2_F7_value , :cell_WorksheetSheet2_C2_value , :cell_WorksheetSheet2_N2_value .
+
+:cell_WorksheetSheet1_D6
+        a                   :cell ;
+        rdfs:label          "Cell_D6" ;
+        :CellID             "D6" ;
+        :hasColumn          :column_WorksheetSheet1_D ;
+        :hasRow             :row_WorksheetSheet1_6 ;
+        :hasValue           :cell_WorksheetSheet1_D6_value ;
+        :isPartOfWorksheet  :Worksheet_Sheet1 ;
+        :isUsedIn           :cell_WorksheetSheet1_E3_value .
 
 :cell_WorksheetSheet2_F1_value
         a           :StringValue ;
@@ -1157,11 +1157,6 @@
         :isPartOfWorksheet  :Worksheet_Sheet2 ;
         :isUsedIn           :cell_WorksheetSheet2_C2_value , :cell_WorksheetSheet2_F2_value , :cell_WorksheetSheet2_N2_value .
 
-:cell_WorksheetSheet1_I8_value
-        a           :StringValue ;
-        rdfs:label  "StringValue" ;
-        :CellValue  "After Dawn" .
-
 :cell_WorksheetSheet1_D1
         a                   :cell ;
         rdfs:label          "Cell_D1" ;
@@ -1170,6 +1165,11 @@
         :hasRow             :row_WorksheetSheet1_1 ;
         :hasValue           :cell_WorksheetSheet1_D1_value ;
         :isPartOfWorksheet  :Worksheet_Sheet1 .
+
+:cell_WorksheetSheet1_I8_value
+        a           :StringValue ;
+        rdfs:label  "StringValue" ;
+        :CellValue  "After Dawn" .
 
 :cell_WorksheetSheet2_C7_value
         a              :FormulaValue ;
@@ -1200,6 +1200,11 @@
         :hasValue           :cell_WorksheetSheet2_A2_value ;
         :isPartOfWorksheet  :Worksheet_Sheet2 .
 
+:cell_WorksheetSheet2_D1_value
+        a           :StringValue ;
+        rdfs:label  "StringValue" ;
+        :CellValue  "Inflation" .
+
 :cell_WorksheetSheet1_K3
         a           :cell ;
         rdfs:label  "Cell_K3" ;
@@ -1208,11 +1213,6 @@
         :hasRow     :row_WorksheetSheet1_3 ;
         :hasValue   :cell_WorksheetSheet1_K3_value ;
         :isUsedIn   :cell_WorksheetSheet1_M3_value .
-
-:cell_WorksheetSheet2_D1_value
-        a           :StringValue ;
-        rdfs:label  "StringValue" ;
-        :CellValue  "Inflation" .
 
 :column_WorksheetSheet1_B
         a                   :column ;
@@ -1419,14 +1419,6 @@
         rdfs:label  "NumericValue" ;
         :CellValue  "31.0"^^xsd:float .
 
-:row_WorksheetSheet2_4
-        a                   :row ;
-        rdfs:label          "Row_4" ;
-        :RowID              "4"^^xsd:long ;
-        :hasCell            :cell_WorksheetSheet2_A4 , :cell_WorksheetSheet2_C4 , :cell_WorksheetSheet2_F4 , :cell_WorksheetSheet2_B4 , :cell_WorksheetSheet2_D4 ;
-        :hasColumn          :column_WorksheetSheet2_C , :column_WorksheetSheet2_B , :column_WorksheetSheet2_F , :column_WorksheetSheet2_A , :column_WorksheetSheet2_D ;
-        :isPartOfWorksheet  :Worksheet_Sheet2 .
-
 :cell_WorksheetSheet1_D7
         a                   :cell ;
         rdfs:label          "Cell_D7" ;
@@ -1435,6 +1427,14 @@
         :hasRow             :row_WorksheetSheet1_7 ;
         :hasValue           :cell_WorksheetSheet1_D7_value ;
         :isPartOfWorksheet  :Worksheet_Sheet1 .
+
+:row_WorksheetSheet2_4
+        a                   :row ;
+        rdfs:label          "Row_4" ;
+        :RowID              "4"^^xsd:long ;
+        :hasCell            :cell_WorksheetSheet2_A4 , :cell_WorksheetSheet2_C4 , :cell_WorksheetSheet2_F4 , :cell_WorksheetSheet2_B4 , :cell_WorksheetSheet2_D4 ;
+        :hasColumn          :column_WorksheetSheet2_C , :column_WorksheetSheet2_B , :column_WorksheetSheet2_F , :column_WorksheetSheet2_A , :column_WorksheetSheet2_D ;
+        :isPartOfWorksheet  :Worksheet_Sheet2 .
 
 :cell_WorksheetSheet1_M3_value
         a              :FormulaValue ;
@@ -1838,6 +1838,14 @@
         :hasValue           :cell_WorksheetSheet2_C7_value ;
         :isPartOfWorksheet  :Worksheet_Sheet2 .
 
+:row_WorksheetSheet1_87
+        a                   :row ;
+        rdfs:label          "Row_87" ;
+        :RowID              "87"^^xsd:long ;
+        :hasCell            :cell_WorksheetSheet1_CI87 ;
+        :hasColumn          :column_WorksheetSheet1_CI ;
+        :isPartOfWorksheet  :Worksheet_Sheet1 .
+
 :cell_WorksheetSheet1_C6
         a                   :cell ;
         rdfs:label          "Cell_C6" ;
@@ -1854,14 +1862,6 @@
         :CellValue     "4186.0"^^xsd:float ;
         :FunctionName  "SUM(B2:B4) + SUM(C2:C4) + SUM(SUM(D3:D4),SUM(D5:D6))" ;
         :hasCell       :cell_WorksheetSheet1_C4 , :cell_WorksheetSheet1_D6 , :cell_WorksheetSheet1_C2 , :cell_WorksheetSheet1_D4 , :cell_WorksheetSheet1_D5 , :cell_WorksheetSheet1_D3 , :cell_WorksheetSheet1_B4 , :cell_WorksheetSheet1_B2 , :cell_WorksheetSheet1_C3 , :cell_WorksheetSheet1_B3 .
-
-:row_WorksheetSheet1_87
-        a                   :row ;
-        rdfs:label          "Row_87" ;
-        :RowID              "87"^^xsd:long ;
-        :hasCell            :cell_WorksheetSheet1_CI87 ;
-        :hasColumn          :column_WorksheetSheet1_CI ;
-        :isPartOfWorksheet  :Worksheet_Sheet1 .
 
 :cell_WorksheetSheet1_M8
         a           :cell ;
@@ -1882,6 +1882,11 @@
         :hasColumn          :column_WorksheetSheet1_M , :column_WorksheetSheet1_L , :column_WorksheetSheet1_K , :column_WorksheetSheet1_J , :column_WorksheetSheet1_I ;
         :isPartOfWorksheet  :Worksheet_Sheet1 .
 
+:cell_WorksheetSheet1_I7_value
+        a           :StringValue ;
+        rdfs:label  "StringValue" ;
+        :CellValue  "GTA" .
+
 :cell_WorksheetSheet1_J8
         a           :cell ;
         rdfs:label  "Cell_J8" ;
@@ -1889,11 +1894,6 @@
         :hasColumn  :column_WorksheetSheet1_J ;
         :hasRow     :row_WorksheetSheet1_8 ;
         :hasValue   :cell_WorksheetSheet1_J8_value .
-
-:cell_WorksheetSheet1_I7_value
-        a           :StringValue ;
-        rdfs:label  "StringValue" ;
-        :CellValue  "GTA" .
 
 :cell_WorksheetSheet2_C6_value
         a              :FormulaValue ;
@@ -2001,15 +2001,6 @@
         :FunctionName  "K6-(K6*(L6*100/100))" ;
         :hasCell       :cell_WorksheetSheet1_L6 , :cell_WorksheetSheet1_K6 .
 
-:cell_WorksheetSheet1_F1
-        a                   :cell ;
-        rdfs:label          "Cell_F1" ;
-        :CellID             "F1" ;
-        :hasColumn          :column_WorksheetSheet1_F ;
-        :hasRow             :row_WorksheetSheet1_1 ;
-        :hasValue           :cell_WorksheetSheet1_F1_value ;
-        :isPartOfWorksheet  :Worksheet_Sheet1 .
-
 :cell_WorksheetSheet2_F2
         a                   :cell ;
         rdfs:label          "Cell_F2" ;
@@ -2019,6 +2010,15 @@
         :hasValue           :cell_WorksheetSheet2_F2_value ;
         :isPartOfWorksheet  :Worksheet_Sheet2 ;
         :isUsedIn           :cell_WorksheetSheet2_C2_value .
+
+:cell_WorksheetSheet1_F1
+        a                   :cell ;
+        rdfs:label          "Cell_F1" ;
+        :CellID             "F1" ;
+        :hasColumn          :column_WorksheetSheet1_F ;
+        :hasRow             :row_WorksheetSheet1_1 ;
+        :hasValue           :cell_WorksheetSheet1_F1_value ;
+        :isPartOfWorksheet  :Worksheet_Sheet1 .
 
 :cell   a                owl:Class ;
         rdfs:subClassOf  :BasicElement ;
@@ -2140,15 +2140,15 @@
         :FunctionName  "K2-(K2*(L2*100/100))" ;
         :hasCell       :cell_WorksheetSheet1_L2 , :cell_WorksheetSheet1_K2 .
 
+:SignatureLine  a        owl:Class ;
+        rdfs:subClassOf  :Text .
+
 :cell_WorksheetSheet2_A6_value
         a              :FormulaValue ;
         rdfs:label     "FormulaValue" ;
         :CellValue     "Egg" ;
         :FunctionName  "Sheet1!A6" ;
         :hasCell       :cell_WorksheetSheet1_A6 .
-
-:SignatureLine  a        owl:Class ;
-        rdfs:subClassOf  :Text .
 
 :X-End  a            owl:DatatypeProperty ;
         rdfs:domain  :Table ;
@@ -2246,15 +2246,6 @@
 :BoxAndWhiskerChart  a   owl:Class ;
         rdfs:subClassOf  :Chart .
 
-:cell_WorksheetSheet2_B6
-        a                   :cell ;
-        rdfs:label          "Cell_B6" ;
-        :CellID             "B6" ;
-        :hasColumn          :column_WorksheetSheet2_B ;
-        :hasRow             :row_WorksheetSheet2_6 ;
-        :hasValue           :cell_WorksheetSheet2_B6_value ;
-        :isPartOfWorksheet  :Worksheet_Sheet2 .
-
 :cell_WorksheetSheet1_B5
         a                   :cell ;
         rdfs:label          "Cell_B5" ;
@@ -2267,6 +2258,15 @@
 
 :PivotTable  a           owl:Class ;
         rdfs:subClassOf  :Table .
+
+:cell_WorksheetSheet2_B6
+        a                   :cell ;
+        rdfs:label          "Cell_B6" ;
+        :CellID             "B6" ;
+        :hasColumn          :column_WorksheetSheet2_B ;
+        :hasRow             :row_WorksheetSheet2_6 ;
+        :hasValue           :cell_WorksheetSheet2_B6_value ;
+        :isPartOfWorksheet  :Worksheet_Sheet2 .
 
 :cell_WorksheetSheet1_L7
         a           :cell ;
@@ -2406,6 +2406,14 @@
         rdfs:domain  :SheetElement ;
         rdfs:range   xsd:string .
 
+:cell_WorksheetSheet1_J4_value
+        a           :NumericValue ;
+        rdfs:label  "NumericValue" ;
+        :CellValue  "2018.0"^^xsd:float .
+
+:TextBox  a              owl:Class ;
+        rdfs:subClassOf  :Text .
+
 :cell_WorksheetSheet2_B1
         a                   :cell ;
         rdfs:label          "Cell_B1" ;
@@ -2414,14 +2422,6 @@
         :hasRow             :row_WorksheetSheet2_1 ;
         :hasValue           :cell_WorksheetSheet2_B1_value ;
         :isPartOfWorksheet  :Worksheet_Sheet2 .
-
-:cell_WorksheetSheet1_J4_value
-        a           :NumericValue ;
-        rdfs:label  "NumericValue" ;
-        :CellValue  "2018.0"^^xsd:float .
-
-:TextBox  a              owl:Class ;
-        rdfs:subClassOf  :Text .
 
 :cell_WorksheetSheet1_L2
         a           :cell ;
@@ -2599,14 +2599,6 @@
         :isPartOfWorksheet  :Worksheet_Sheet2 ;
         :isUsedIn           :cell_WorksheetSheet2_N2_value , :cell_WorksheetSheet2_C2_value , :cell_WorksheetSheet2_F5_value .
 
-:row_WorksheetSheet2_1
-        a                   :row ;
-        rdfs:label          "Row_1" ;
-        :RowID              "1"^^xsd:long ;
-        :hasCell            :cell_WorksheetSheet2_F1 , :cell_WorksheetSheet2_A1 , :cell_WorksheetSheet2_D1 , :cell_WorksheetSheet2_M1 , :cell_WorksheetSheet2_B1 , :cell_WorksheetSheet2_N1 , :cell_WorksheetSheet2_G1 , :cell_WorksheetSheet2_C1 ;
-        :hasColumn          :column_WorksheetSheet2_D , :column_WorksheetSheet2_F , :column_WorksheetSheet2_A , :column_WorksheetSheet2_G , :column_WorksheetSheet2_M , :column_WorksheetSheet2_B , :column_WorksheetSheet2_N , :column_WorksheetSheet2_C ;
-        :isPartOfWorksheet  :Worksheet_Sheet2 .
-
 :cell_WorksheetSheet1_D4
         a                   :cell ;
         rdfs:label          "Cell_D4" ;
@@ -2616,6 +2608,14 @@
         :hasValue           :cell_WorksheetSheet1_D4_value ;
         :isPartOfWorksheet  :Worksheet_Sheet1 ;
         :isUsedIn           :cell_WorksheetSheet1_E3_value .
+
+:row_WorksheetSheet2_1
+        a                   :row ;
+        rdfs:label          "Row_1" ;
+        :RowID              "1"^^xsd:long ;
+        :hasCell            :cell_WorksheetSheet2_F1 , :cell_WorksheetSheet2_A1 , :cell_WorksheetSheet2_D1 , :cell_WorksheetSheet2_M1 , :cell_WorksheetSheet2_B1 , :cell_WorksheetSheet2_N1 , :cell_WorksheetSheet2_G1 , :cell_WorksheetSheet2_C1 ;
+        :hasColumn          :column_WorksheetSheet2_D , :column_WorksheetSheet2_F , :column_WorksheetSheet2_A , :column_WorksheetSheet2_G , :column_WorksheetSheet2_M , :column_WorksheetSheet2_B , :column_WorksheetSheet2_N , :column_WorksheetSheet2_C ;
+        :isPartOfWorksheet  :Worksheet_Sheet2 .
 
 :cell_WorksheetSheet2_B7_value
         a              :FormulaValue ;

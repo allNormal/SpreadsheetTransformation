@@ -3,7 +3,7 @@ package ExcelReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FormulaSplitter {
+class FormulaSplitter {
     private List<String> result = new ArrayList<>();
     private String functions;
 

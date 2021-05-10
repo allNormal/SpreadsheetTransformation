@@ -54,7 +54,6 @@ public class TableModel {
 
     TableModel(String name){
         this.MODEL_NAME = name;
-        System.out.println("initializing");
         initializeTemplateModel();
     }
 

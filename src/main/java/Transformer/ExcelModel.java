@@ -73,7 +73,6 @@ public class ExcelModel {
 
     public ExcelModel(String modelName) {
         this.MODEL_NAME = modelName;
-        System.out.println("initializing");
         initializeTemplateModel();
 
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 import static Entity.ValueType.FunctionType.*;
 
-public class FormulaConverter {
+class FormulaConverter {
     private List<String> functionList;
     private String functions;
     private Formula formula;

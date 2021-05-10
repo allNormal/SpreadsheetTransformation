@@ -9,6 +9,8 @@ import Entity.SheetElement.SheetElement;
 import Entity.SheetElement.Tables.Table;
 import Entity.Workbook.Workbook;
 import Entity.Worksheet.Worksheet;
+import ExcelReader.*;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.query.*;
@@ -16,11 +18,10 @@ import org.apache.jena.vocabulary.RDFS;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import Exception.IncorrectTypeException;
+import Exception.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +29,18 @@ public class TableTransformer implements ITransformer{
     private TableModel tableModel;
     private OntModel model;
     private Workbook workbook;
+    private TableBasedReader tableBasedReader;
 
-    public TableTransformer() {
+    public TableTransformer(TableBasedReader tableBasedReader) {
+        this.tableBasedReader =  tableBasedReader;
     }
 
     @Override
-    public void create(Workbook workbook) throws IncorrectTypeException {
-        this.workbook = workbook;
+    public void create() throws IncorrectTypeException{
+        if(tableBasedReader.getWorkbook() == null) {
+            throw new NullPointerException("workbook is null");
+        }
+        this.workbook = tableBasedReader.getWorkbook();
         this.tableModel = new TableModel(this.workbook.getFileName());
         this.model = this.tableModel.getModel();
         convertExcelToOntology();
@@ -42,7 +48,7 @@ public class TableTransformer implements ITransformer{
 
 
     @Override
-    public Collection<String> getCellDependencies(String cellID, String worksheetName) {
+    public List<String> getCellDependencies(String cellID, String worksheetName) {
         String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
                 "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -73,7 +79,7 @@ public class TableTransformer implements ITransformer{
             ResultSet result = qExec.execSelect();
             while (result.hasNext()) {
                 QuerySolution solt = result.nextSolution();
-                dependencyList.add(solt.getResource("columnDependency").getLocalName());
+                dependencyList.add(solt.getResource("columnDependency").getProperty(RDFS.label).getString());
             }
         } finally {
             qExec.close();
@@ -83,7 +89,7 @@ public class TableTransformer implements ITransformer{
     }
 
     @Override
-    public Collection<String> addConstraint(ElementType type, String typeID, String worksheetName, Operator operator, String value) {
+    public List<String> addConstraint(ElementType type, String typeID, String worksheetName, Operator operator, String value) {
         List<String> result = new ArrayList<>();
         float valueNumeric = 0;
         boolean isNumeric = true;
@@ -191,7 +197,7 @@ public class TableTransformer implements ITransformer{
     }
 
     @Override
-    public Collection<String> getReverseDependencies(String cellID, String worksheetName) {
+    public List<String> getReverseDependencies(String cellID, String worksheetName) {
         String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
                 "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -226,7 +232,7 @@ public class TableTransformer implements ITransformer{
             ResultSet result = qExec.execSelect();
             while (result.hasNext()) {
                 QuerySolution solt = result.nextSolution();
-                dependencyListIsUsedIn.add(solt.getResource("columnDependencyIsUsedIn").getLocalName());
+                dependencyListIsUsedIn.add(solt.getResource("columnDependencyIsUsedIn").getProperty(RDFS.label).getString());
             }
         } finally {
             qExec.close();

@@ -3,23 +3,25 @@ package Transformer;
 import Entity.Operator;
 import Entity.SheetElement.ElementType;
 import Entity.Workbook.Workbook;
+import ExcelReader.ExcelReader;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.Restriction;
-import Exception.IncorrectTypeException;
+import Exception.*;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface ITransformer {
 
-    void create(Workbook workbook) throws IncorrectTypeException;
+    void create() throws IncorrectTypeException;
 
 
-    Collection<String> getCellDependencies(String cellID, String worksheetName);
+    List<String> getCellDependencies(String cellID, String worksheetName);
 
-    Collection<String> addConstraint(ElementType type, String typeID, String worksheetName,
+    List<String> addConstraint(ElementType type, String typeID, String worksheetName,
                                      Operator operator, String value);
 
-    Collection<String> getReverseDependencies(String cellID, String worksheetName);
+    List<String> getReverseDependencies(String cellID, String worksheetName);
 
     OntModel getModel();
 

@@ -178,14 +178,6 @@
         :hasValueType       :Workbook_Sheet1_Table_Sheet1_Price_NumericValueType ;
         :isUsedIn           :Workbook_Sheet1_Table_Sheet1_Price_After_FormulaValueType , :Workbook_Sheet1_Table_Sheet1_No_Title_Column_E_FormulaValueType , :Workbook_Sheet1_Table_Sheet1_Total_Value_FormulaValueType , :Workbook_Sheet2_Table_Sheet2_Inflation_FormulaValueType .
 
-:Workbook_Sheet2_Ketchup
-        a                 :RowHeader ;
-        rdfs:label        "Ketchup" ;
-        :RowHeaderID      "7" ;
-        :RowHeaderTitle   "Ketchup" ;
-        :hasColumnHeader  :Workbook_Sheet2_Produkt ;
-        :hasValue         :Workbook_Sheet2_Table_Sheet2_Sell-Price_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_Buy-Price_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_Produkt_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_SomeCalculation_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_Inflation_Value_For_RowKetchup .
-
 :Workbook_Sheet2_Table_Sheet2_Produkt_Value_For_RowSugar
         a                 :Value ;
         rdfs:label        "Produkt_Value_For_RowSugar" ;
@@ -198,6 +190,14 @@
         rdfs:label    "Price_Value_For_RowBread" ;
         :ActualValue  "60.0"^^xsd:float , "5.0"^^xsd:float ;
         :ValueFor     :Workbook_Sheet1_Price .
+
+:Workbook_Sheet2_Ketchup
+        a                 :RowHeader ;
+        rdfs:label        "Ketchup" ;
+        :RowHeaderID      "7" ;
+        :RowHeaderTitle   "Ketchup" ;
+        :hasColumnHeader  :Workbook_Sheet2_Produkt ;
+        :hasValue         :Workbook_Sheet2_Table_Sheet2_Sell-Price_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_Buy-Price_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_Produkt_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_SomeCalculation_Value_For_RowKetchup , :Workbook_Sheet2_Table_Sheet2_Inflation_Value_For_RowKetchup .
 
 :Workbook_Sheet2_Table_Sheet2_Sell-Price_Value_For_RowCookies
         a                 :Value ;
@@ -335,16 +335,16 @@
         :FormulaFunction  "K4-(K4*(L4*100/100))" ;
         :ValueFor         :Workbook_Sheet1_Price_After .
 
-:Workbook_Sheet1_a  a       :ColumnHeader ;
-        rdfs:label          "a" ;
-        :ColumnHeaderID     "CI" , "AAB" ;
-        :ColumnHeaderTitle  "a" .
-
 :Workbook_Sheet1_Table_Sheet1_Quantity_Value_For_RowKetchup
         a             :Value ;
         rdfs:label    "Quantity_Value_For_RowKetchup" ;
         :ActualValue  "6.0"^^xsd:float ;
         :ValueFor     :Workbook_Sheet1_Quantity .
+
+:Workbook_Sheet1_a  a       :ColumnHeader ;
+        rdfs:label          "a" ;
+        :ColumnHeaderID     "CI" , "AAB" ;
+        :ColumnHeaderTitle  "a" .
 
 :RowHeaderTitle  a   owl:DatatypeProperty ;
         rdfs:domain  :RowHeader ;
@@ -388,10 +388,6 @@
         :hasColumnHeader  :Workbook_Sheet1_Produkt ;
         :hasValue         :Workbook_Sheet1_Table_Sheet1_Price_Value_For_RowEgg , :Workbook_Sheet1_Table_Sheet1_Games_Value_For_RowEgg , :Workbook_Sheet1_Table_Sheet1_Quantity_Value_For_RowEgg , :Workbook_Sheet1_Table_Sheet1_Total_Value_Value_For_RowEgg , :Workbook_Sheet1_Table_Sheet1_Year_Released_Value_For_RowEgg , :Workbook_Sheet1_Table_Sheet1_Produkt_Value_For_RowEgg , :Workbook_Sheet1_Table_Sheet1_Discount_Value_For_RowEgg , :Workbook_Sheet1_Table_Sheet1_Price_After_Value_For_RowEgg .
 
-:Workbook_Sheet1_Table_Sheet1_Year_Released_NumericValueType
-        a           :Number ;
-        rdfs:label  "Numeric" .
-
 :Workbook_Sheet1_Table_Sheet1_Quantity_Value_For_RowSugar
         a             :Value ;
         rdfs:label    "Quantity_Value_For_RowSugar" ;
@@ -404,6 +400,10 @@
         :RowHeaderID      "1" ;
         :RowHeaderTitle   "ColumnHeader" ;
         :hasColumnHeader  :Workbook_Sheet1_Produkt .
+
+:Workbook_Sheet1_Table_Sheet1_Year_Released_NumericValueType
+        a           :Number ;
+        rdfs:label  "Numeric" .
 
 :Workbook_Sheet2_Table_Sheet2_Inflation_Value_For_RowKetchup
         a                 :Value ;

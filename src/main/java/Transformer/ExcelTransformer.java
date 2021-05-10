@@ -9,6 +9,7 @@ import Entity.SheetElement.Tables.Table;
 import Entity.SheetElement.Texts.Text;
 import Entity.Workbook.Workbook;
 import Entity.Worksheet.Worksheet;
+import ExcelReader.ExcelReader;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.query.*;
@@ -19,7 +20,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collection;
+import Exception.*;
+import ExcelReader.*;
 import java.util.List;
 import java.util.Map;
 
@@ -28,14 +30,19 @@ public class ExcelTransformer implements ITransformer {
     private ExcelModel excelModel;
     private Workbook workbook;
     private OntModel model;
+    private ExcelBasedReader excelBasedReader;
 
-    public ExcelTransformer(){
+    public ExcelTransformer(ExcelBasedReader excelBasedReader){
+        this.excelBasedReader = excelBasedReader;
     }
 
 
     @Override
-    public void create(Workbook workbook) {
-        this.workbook = workbook;
+    public void create(){
+        if(excelBasedReader.getWorkbook() == null) {
+            throw new NullPointerException("workbook is null");
+        }
+        this.workbook = excelBasedReader.getWorkbook();
         this.excelModel = new ExcelModel(workbook.getFileName());
         this.model = this.excelModel.getModel();
         convertExcelToOntology();
@@ -43,7 +50,7 @@ public class ExcelTransformer implements ITransformer {
 
 
     @Override
-    public Collection<String> getCellDependencies(String cellID, String worksheetName) {
+    public List<String> getCellDependencies(String cellID, String worksheetName) {
         String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
                 "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -71,7 +78,7 @@ public class ExcelTransformer implements ITransformer {
             ResultSet result = qExec.execSelect();
             while (result.hasNext()) {
                 QuerySolution solt = result.nextSolution();
-                dependencyList.add(solt.getResource("cellDependency").getLocalName());
+                dependencyList.add(solt.getResource("cellDependency").getProperty(this.excelModel.getCellID()).getString());
             }
         } finally {
             qExec.close();
@@ -81,7 +88,7 @@ public class ExcelTransformer implements ITransformer {
     }
 
     @Override
-    public Collection<String> addConstraint(ElementType type, String typeID, String worksheetName, Operator operator, String value) {
+    public List<String> addConstraint(ElementType type, String typeID, String worksheetName, Operator operator, String value) {
 
         List<String> result = new ArrayList<>();
         float valueNumeric = 0;
@@ -162,7 +169,7 @@ public class ExcelTransformer implements ITransformer {
     }
 
     @Override
-    public Collection<String> getReverseDependencies(String cellID, String worksheetName) {
+    public List<String> getReverseDependencies(String cellID, String worksheetName) {
 
         String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
                 "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -196,7 +203,7 @@ public class ExcelTransformer implements ITransformer {
             ResultSet result = qExec.execSelect();
             while (result.hasNext()) {
                 QuerySolution solt = result.nextSolution();
-                dependencyListIsUsedIn.add(solt.getResource("cellDependencyIsUsedIn").getLocalName());
+                dependencyListIsUsedIn.add(solt.getResource("cellDependencyIsUsedIn").getProperty(this.excelModel.getCellID()).getString());
             }
         } finally {
             qExec.close();
